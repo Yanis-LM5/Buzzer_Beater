@@ -1,4 +1,5 @@
 Idées:
+-------
 
 -(extra API MAP:
 Créer une map avec les terrains de baskets dispo sur paris (via une map importé google map) mode en externe/int ou les 2 avec un système de notation par terrain si possible)
@@ -9,8 +10,11 @@ Api (application Programme Interface) qui permet de récupérer des infos d’au
 -Parallax effect
 -API Rest
 -Ajouter map avec terrains basket
+-Mode sombre et Clairs
 
+------------------------------------------------------------------------
 Langages:
+---------
 
 HTML/CSS
 JS ou Typescript( TS de préférence)
@@ -23,7 +27,27 @@ MERN
 
 (Stockage des infos)
 
+
+------------------------------------------------------------------------
+Structure du site:
+------------------
+
+Page accueil (apperçu des différent onglets):
+
+Page News (infosbaskets):
+
+Page Sneaker (infos paires):
+
+Présentation des équipes:
+-Parallax effect
+
+Résultats match:
+
+Espace Utilisateur:
+
+------------------------------------------------------------------------
 Liens utiles:
+-------------
 
 vidéos git et github:
 https://www.youtube.com/watch?v=anP0LBVhUzA&list=PL6Cz9tnj_488qRzP0zg3iFOHs0lFvmQdT&index=3
