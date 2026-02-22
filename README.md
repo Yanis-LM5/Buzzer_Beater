@@ -80,4 +80,4 @@ https://www.youtube.com/watch?v=9oEQvI7K-rA
 []finir map
 []ajouter equiv. ruff
 []venv?
-[]fix l'api fetch de news (pbm proxy?)!! 
+[x]fix l'api fetch de news (pbm proxy?)!!
