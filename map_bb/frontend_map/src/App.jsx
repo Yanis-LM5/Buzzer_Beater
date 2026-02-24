@@ -8,19 +8,23 @@ import StarIcon from '@mui/icons-material/Star';
 import './app.css';
 import axios from "axios"
 import {format} from "timeago.js"
-
+import Register from './components/Register';
+import Login from './components/Login';
 
 
   function App() {
-    const currentUser = "yanis75"
-    const [pins, setPins]= useState([])
-    const [currentPlaceId,setCurrentPlaceId] = useState(null)
+    const myStorage = window.localStorage;
+    const [currentUser, setCurrentUser] = useState(myStorage.getItem("user"));
+    const [pins, setPins]= useState([]);
+    const [currentPlaceId,setCurrentPlaceId] = useState(null);
 
     // Create new place
-    const [newPlace,setnewPlace] = useState(null)
-    const [Title,setTitle] = useState("")
-    const [Desc,setDesc] = useState("")
-    const [Rating,setRating] = useState(0)
+    const [newPlace,setnewPlace] = useState(null);
+    const [Title,setTitle] = useState("");
+    const [Desc,setDesc] = useState("");
+    const [Rating,setRating] = useState(0);
+    const [showRegister, setShowRegister] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
     const [viewport, setViewport] = useState({
       width: "100vw",
       height: "100vh",
@@ -79,9 +83,20 @@ import {format} from "timeago.js"
 
     };
 
+    const handleLogout = () => {
+      myStorage.removeItem("user");
+      setCurrentUser(null);
+    }
+
     return (
         <div className="App">
-
+          {currentUser ? (
+                  <div className='navbar'>
+                  <button className='button logout' onClick={handleLogout}>Log out</button> </div>
+              ) : (<div className='navbar'>
+                  <button className='button login' onClick={()=>setShowLogin(true)}>Log in</button>
+                  <button className='button register' onClick={()=>setShowRegister(true)}>Register</button>
+                </div>)}
           <Map
             mapboxAccessToken={import.meta.env.VITE_MAPBOX}
             {...viewport}
@@ -95,18 +110,20 @@ import {format} from "timeago.js"
               {pins.map((p) => (
                 <>
                   <Marker longitude={p.long} latitude={p.lat} anchor="bottom"
-
+                    offsetTop={visualViewport.zoom *2}
+                    offsetLeft = {-visualViewport.zoom *2}
                   // Prevent the click event from bubbling up to the map (which would close the popup immediately)
                   onClick={(e) => {
                     e.originalEvent.stopPropagation();
                     handleMarkerClick(p._id, p.lat, p.long);
                   }} >
                     <RoomIcon
-                      style={{color: p.username === currentUser ? "red" : '#5e17eb', fontSize: visualViewport.zoom *2, cursor: "pointer" }}
+                      style={{color: p.username === currentUser ? "red" : "#4c34eb", fontSize: visualViewport.zoom *2, cursor: "pointer" }}
                     />
                   </Marker>
                   {p._id === currentPlaceId && (
                     <Popup longitude={p.long} latitude={p.lat}
+
                       anchor="bottom"
                       onClose={() => setCurrentPlaceId(null)}
                       >
@@ -119,11 +136,8 @@ import {format} from "timeago.js"
                         <p className='desc'>{p.desc}</p>
                         <label>Rating</label>
                         <div className="stars">
-                          <StarIcon className="star"/>
-                          <StarIcon className="star"/>
-                          <StarIcon className="star"/>
-                          <StarIcon className="star"/>
-                          <StarIcon className="star"/>
+                          {/* create an array of size p.rating and fill it with <StarIcon className="star"/> */}
+                          {Array(p.rating).fill(<StarIcon className="star"/>)}
                         </div>
                         <span className="username">Created by <b>{p.username}</b></span>
                         <br></br>
@@ -158,9 +172,12 @@ import {format} from "timeago.js"
                         </form>
                       </div>
 
-                    </Popup>) }
+                    </Popup>
+                )}
+                
           </Map>
-
+          { showRegister &&  <Register setShowRegister={setShowRegister}/>}
+          { showLogin &&  <Login setShowLogin={setShowLogin} myStorage={myStorage} setCurrentUser={setCurrentUser}/>}
         </div>
 
     );

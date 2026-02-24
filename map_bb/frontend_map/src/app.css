@@ -60,3 +60,35 @@ input::placeholder, textarea::placeholder{
     color: white;
     background-color:tomato;
 }
+
+.navbar {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 9;
+
+
+}
+.button{
+    border: none;
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.logout{
+    background-color: tomato;
+}
+
+.login{
+    background-color: #008080;
+}
+.register{
+    background-color: slateblue ;
+}
+
