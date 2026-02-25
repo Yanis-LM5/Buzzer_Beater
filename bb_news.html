@@ -3,113 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_news.css"/>
+    <title>BB News — Buzzer Beater</title>
+    <link rel="stylesheet" href="style_teams.css"/>
     <link rel="shortcut icon" href="logo_bb.png" type="image/x-icon">
-    <title>BB News</title>
-</head>
-<body>
-    <header>
-        <ul>
-            <li><img src= "logo_bb.png" alt= "logo"></li>
-            <li> <a href="bb_menu.html">Home</a></li>
-            <li><a href="bb_news.html">News </a></li>
-            <li> <a href="bb_teams.html">Teams</a></li>
-            <li> Results</li>
-            <li> Map</li>
-            <li> Message</li>
-            <li> Connect</li>
+    <script src="https://kit.fontawesome.com/3ca4fe2b8a.js"></script>
 
+</head>
+<body style="background: #0a0a0a; min-height: 100vh;">
+
+<!-- ===== HEADER ===== -->
+<header>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbox">&#9776;</label>
+    <nav class="navbar">
+        <ul>
+            <li><img src="logo_bb.png" alt="logo"></li>
+            <li><a href="bb_menu.html">Home</a></li>
+            <li><a href="bb_news.html" class="nav-current">News</a></li>
+            <li><a href="bb_teams.html">Teams</a></li>
+            <li>Results</li>
+            <li>Map</li>
+            <li>Message</li>
+            <li><a href="login.html">Connect</a></li>
         </ul>
     </header>
 
-    <h1>BB News</h1>
+<!-- ===== BANNER ===== -->
+<div class="teams-page-banner">
+    <div class="teams-page-banner__inner">
+        <span class="teams-badge"><i class="fa-solid fa-newspaper"></i> Flux RSS en direct</span>
+        <h1>BB <span>News</span></h1>
+        <p>Actualités NBA · Résultats · Transferts · Analyses</p>
+    </div>
+</div>
 
-    <script>
+<!-- ===== NEWS GRILLE ===== -->
+<section class="section-home" style="padding-top: 50px;">
+    <div class="news-grid news-grid--full" id="news-container">
+    </div>
+</section>
 
-    // flux rss l'equipe https://dwh.lequipe.fr/api/edito/rss?path=/Basket/
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img src="logo_bb.png" alt="logo" class="footer-logo">
+            <p class="footer-name">Buzzer<span>Beater</span></p>
+            <p class="footer-tagline">Le hub NBA francophone</p>
+        </div>
 
-    const url = "https://corsproxy.io/?https://rmcsport.bfmtv.com/rss/basket/nba/";
-    getxt(url);
-    async function getxt(url) {
-    console.log(1);
-    let x = await fetch(url);
-    let y = await x.text();
-    console.log(2);
-    console.log(y.substring());
-    xmlParser = new DOMParser();
-    console.log(3);
-    let xmlDoc = xmlParser.parseFromString(y, "text/xml");
-    console.log(xmlDoc);
-    let item = xmlDoc.getElementsByTagName("item");
-    console.log(item);
-    console.log(item.length);
+        <div class="footer-links">
+            <h4>Navigation</h4>
+            <ul>
+                <li><a href="bb_menu.html">Home</a></li>
+                <li><a href="bb_news.html">News</a></li>
+                <li><a href="bb_teams.html">Teams</a></li>
+                <li><a href="bb_menu.html#forum">Forum</a></li>
+            </ul>
+        </div>
 
-    for (let i=0; i<item.length; i++){
+        <div class="footer-links">
+            <h4>Compte</h4>
+            <ul>
+                <li><a href="login.html">Connexion</a></li>
+                <li><a href="register.html">Inscription</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 BuzzerBeater — Fait avec <i class="fa-solid fa-basketball" style="color: rgba(244,94,7,1)"></i> par Yanzer92i78 et Christopher</p>
+    </div>
+</footer>
 
-        let paragraphe = document.createElement("div");
-        const body = document.body;
+<script>
+const RSS_URL = "https://corsproxy.io/?https://rmcsport.bfmtv.com/rss/basket/nba/";
 
-        //Item (article)
-        let item_i= xmlDoc.querySelectorAll("item")[i];
+async function loadNews() {
+    const container = document.getElementById("news-container");
+        const res = await fetch(RSS_URL);
+        const text = await res.text();
+        const xml = new DOMParser().parseFromString(text, "text/xml");
+        const items = Array.from(xml.getElementsByTagName("item"));
 
-        //Title (of the article)
-        let title = document.createElement("h3");
-        let title_i= item_i.querySelector("title");
-        title.append(title_i.textContent);
+        container.innerHTML = "";
 
-        //Image (of the article)
-        const img = new Image();
-        img.src = item_i.querySelector("enclosure").getAttribute("url");
-        document.body.appendChild(img);
-
-        //Date (of the article)
-        let date= document.createElement("p");
-        let date_i= item_i.querySelector("pubDate");
-        date.append(date_i.textContent);
-
-        //Text Content (of the article) (1st line...)
-        let txt= document.createElement("p");
-        let txt1_i= item_i.querySelector("description")
-        txt.append(txt1_i.textContent.substring(0, txt1_i.textContent.search("<")))
-
-        //Searching for the rest of the Text Content (Rest line)
-        lettxt = xmlDoc.querySelectorAll("link")[i].textContent;
-        const secondUrl = "############https://corsproxy.io/?" + lettxt;
-        console.log(lettxt)
-        let fetch_txt = await fetch(secondUrl);
-        let fetch_txt_y = await fetch_txt.text();
-        htmlParser_txt = new DOMParser();
-        let htmlDoc_txt = htmlParser_txt.parseFromString(fetch_txt_y, "text/html");
-
-
-
-        let test = htmlDoc_txt.querySelector(".grid_wrapper");
-
-
-
-        if (test){
-            console.log("ok");
-            let begin_txt = test.textContent.indexOf("NBA:");
-            let end_txt = test.textContent.indexOf("NBANBA:", begin_txt + 1);
-            console.log(test.textContent.length);
-            article = test.textContent.substring(begin_txt + 4, end_txt);
-            console.log(article);
-            txt.append(test.textContent.substring(begin_txt, end_txt))
+        if (items.length === 0) {
+            container.innerHTML = `<p class="news-error"><i class="fa-solid fa-circle-exclamation"></i> Aucun article disponible pour le moment.</p>`;
+            return;
         }
 
-        else{
-        console.log("error 2nd fetch api")}
+        items.forEach(item => {
+            const title   = item.querySelector("title")?.textContent || "";
+            const rawDesc = item.querySelector("description")?.textContent || "";
+            const desc    = rawDesc.replace(/<[^>]+>/g, "").trim().slice(0, 140) + "…";
+            const pubDate = item.querySelector("pubDate")?.textContent || "";
+            const date    = pubDate
+                ? new Date(pubDate).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" })
+                : "";
+            const enclosure = item.querySelector("enclosure");
+            const img     = enclosure ? enclosure.getAttribute("url") : "";
+            const link    = item.querySelector("link")?.textContent || "#";
 
+            const card = document.createElement("a");
+            card.className = "news-card";
+            card.href = link;
+            card.target = "_blank";
+            card.rel = "noopener";
 
-            paragraphe.appendChild(title);
-            paragraphe.appendChild(img);
-            paragraphe.appendChild(date)
-            paragraphe.appendChild(txt)
-            body.appendChild(paragraphe);
+            card.innerHTML = `
+                ${img
+                    ? `<div class="news-card__img" style="background-image:url('${img}')"></div>`
+                    : `<div class="news-card__img news-card__img--empty"><i class="fa-solid fa-basketball"></i></div>`
+                }
+                <div class="news-card__body">
+                    <span class="news-card__date"><i class="fa-regular fa-clock"></i> ${date}</span>
+                    <h3>${title}</h3>
+                    <p>${desc}</p>
+                    <span class="news-card__read">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+                </div>`;
 
-    }
-    }
-    </script>
+            container.appendChild(card);
+        });
+
+}
+
+loadNews();
+</script>
 
 </body>
 </html>
