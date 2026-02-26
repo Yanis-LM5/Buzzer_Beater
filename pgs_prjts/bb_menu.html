@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_teams.css"/>
+    <link rel="stylesheet" href="../style_teams.css"/>
     <title>Buzzer Beater — NBA Hub</title>
-    <link rel="shortcut icon" href="logo_bb.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../imgs_prjt/logo_bb.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/3ca4fe2b8a.js"></script>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
+<!--  Header -->
 <header>
     <input type="checkbox" id="check">
     <label for="check" class="checkbox">&#9776;</label>
     <nav class="navbar">
         <ul>
-            <li><img src="logo_bb.png" alt="logo"></li>
+            <li><img src="../imgs_prjt/logo_bb.png" alt="logo"></li>
             <li><a href="bb_menu.html" class="nav-current">Home</a></li>
             <li><a href="bb_news.html">News</a></li>
             <li><a href="bb_teams.html">Teams</a></li>
-            <li>Results</li>
-            <li>Map</li>
-            <li>Message</li>
+            <!-- <li>Results</li> -->
+            <li><a href="http://localhost:5173">Map</a></li>
+            <li><a href="bb_forum.html">Forum</a></li>
             <li><a href="login.html">Connect</a></li>
         </ul>
     </nav>
 </header>
 
-<!-- ===== HERO ===== -->
+<!--Hero -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -49,7 +49,7 @@
     </div>
 </section>
 
-<!-- ===== FEATURES BAR ===== -->
+<!-- Features Bar -->
 <section class="features" id="features">
     <div class="features-grid">
         <a href="bb_teams.html" class="feature-card">
@@ -75,7 +75,7 @@
     </div>
 </section>
 
-<!-- ===== NEWS ===== -->
+<!-- News -->
 <section class="section-home" id="news-home">
     <div class="section-header">
         <h2 class="section-title"><span>Dernières</span> news</h2>
@@ -88,7 +88,7 @@
     </div>
 </section>
 
-<!-- ===== ÉQUIPES ===== -->
+<!-- Équipes  -->
 <section class="section-home section-dark" id="teams-home">
     <div class="section-header">
         <h2 class="section-title"><span>Équipes</span> vedettes</h2>
@@ -210,11 +210,11 @@
     </div>
 </section>
 
-<!-- ===== FORUM ===== -->
+<!-- Forum -->
 <section class="section-home" id="forum">
     <div class="section-header">
         <h2 class="section-title"><span>Forum</span> communauté</h2>
-        <a href="login.html" class="section-more">Participer <i class="fa-solid fa-arrow-right"></i></a>
+        <!-- <a href="login.html" class="section-more">Participer <i class="fa-solid fa-arrow-right"></i></a> -->
     </div>
 
     <div class="forum-grid">
@@ -291,18 +291,18 @@
         </div>
     </div>
 
-    <div class="forum-cta">
+    <!-- <div class="forum-cta">
         <a href="login.html" class="btn-forum-cta">
             <i class="fa-solid fa-user-plus"></i> Rejoindre la communauté
         </a>
-    </div>
+    </div> -->
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- Footer -->
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
-            <img src="logo_bb.png" alt="logo" class="footer-logo">
+            <img src="../imgs_prjt/logo_bb.png" alt="logo" class="footer-logo">
             <p class="footer-name">Buzzer<span>Beater</span></p>
             <p class="footer-tagline">Le hub NBA francophone</p>
         </div>
@@ -326,12 +326,12 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2025 BuzzerBeater — Fait avec <i class="fa-solid fa-basketball" style="color: rgba(244,94,7,1)"></i> Yanzer92i78 et Christopher</p>
+        <p>&copy; 2026 BuzzerBeater — Fait avec  Yanis et Christopher <i class="fa-solid fa-basketball" style="color: rgba(244,94,7,1)"></i></p>
     </div>
 </footer>
 
 <script>
-/* ===== NEWS PREVIEW===== */
+/* News Preview */
 const RSS_URL = "https://corsproxy.io/?https://rmcsport.bfmtv.com/rss/basket/nba/";
 
 async function loadHomeNews() {
@@ -366,5 +366,6 @@ async function loadHomeNews() {
 
 loadHomeNews();
 </script>
+<script src="../navbar-auth.js"></script>
 </body>
 </html>

@@ -17,10 +17,12 @@ import Login from './components/Login';
     const [currentUser, setCurrentUser] = useState(myStorage.getItem("user"));
     const [pins, setPins]= useState([]);
     const [currentPlaceId,setCurrentPlaceId] = useState(null);
+   
 
     // Create new place
     const [newPlace,setnewPlace] = useState(null);
     const [Title,setTitle] = useState("");
+    const [address,setAddress] = useState("");
     const [Desc,setDesc] = useState("");
     const [Rating,setRating] = useState(0);
     const [showRegister, setShowRegister] = useState(false);
@@ -47,6 +49,16 @@ import Login from './components/Login';
       getPins()
     },[]);
 
+    useEffect(() => {
+      const params = new URLSearchParams(window.location.search);
+      const userFromUrl = params.get('user');
+      if (userFromUrl) {
+        setCurrentUser(userFromUrl);
+        myStorage.setItem('user', userFromUrl);
+        window.history.replaceState(null, '', '/');
+      }
+    }, []);
+
 
     const handleMarkerClick = (id, lat, long)=>{
       setCurrentPlaceId(id);
@@ -54,6 +66,10 @@ import Login from './components/Login';
      };
 
     const handleAddClick = (e) => {
+      if (!currentUser) {
+        setShowLogin(true);
+        return;
+      }
       const {lng, lat} = e.lngLat;
       { currentUser && setnewPlace({
         lat: lat,
@@ -87,27 +103,26 @@ import Login from './components/Login';
     const handleLogout = () => {
       myStorage.removeItem("user");
       setCurrentUser(null);
+      // Vide aussi la session sur localhost:3000 et redirige vers login
+      window.location.href = 'http://localhost:3000/pgs_prjts/login.html?logout=1';
     }
 
     return (
 
         <div className="App">
-          <header className='head'>
-              <li><img src="../../logo_bb.png" alt="logo" /></li>
-              <li> <a href="bb_menu.html">Home</a></li>
-              <li><a href="bb_news.html">News </a></li>
-              <li> <a href="bb_teams.html">Teams</a></li>
-              <li> Results</li>
-              <li> Map</li>
-            {currentUser ? (
-                    <div className='navbar'>
-                    <button className='button logout' onClick={handleLogout}>Log out</button> </div>
-                ) : (<div className='navbar'>
-                    <button className='button login' onClick={()=>setShowLogin(true)}>Log in</button>
-                    <button className='button register' onClick={()=>setShowRegister(true)}>Register</button>
-                  </div>)
-                  }
-          </header>
+          {currentUser ? (
+                  <div className='navbar'>
+                  <a className='button nav-link' href='http://localhost:3000/pgs_prjts/bb_menu.html'>Accueil</a>
+                  <a className='button nav-link' href={`http://localhost:3000/pgs_prjts/bb_forum.html?user=${encodeURIComponent(currentUser)}`}>Forum</a>
+                  <span className='button nav-user'>{currentUser}</span>
+                  <button className='button logout' onClick={handleLogout}>Déco</button>
+                  </div>
+              ) : (<div className='navbar'>
+                  <a className='button nav-link' href='http://localhost:3000/pgs_prjts/bb_menu.html'>Accueil</a>
+                  <a className='button nav-link' href='http://localhost:3000/pgs_prjts/bb_forum.html'>Forum</a>
+                  <button className='button login' onClick={()=>setShowLogin(true)}>Connexion</button>
+                  <button className='button register' onClick={()=>setShowRegister(true)}>Créer compte</button>
+                </div>)}
           <Map
             mapboxAccessToken={import.meta.env.VITE_MAPBOX}
             {...viewport}
@@ -169,8 +184,10 @@ import Login from './components/Login';
                          
                           <label>Place</label> 
                           <input placeholder='Enter a Place' onChange={(e)=>setTitle(e.target.value)}/>
+                          <label>Address</label>
+                          <textarea placeholder='Where is this playground?' onChange={(e)=>setAddress(e.target.value)}/>
                           <label>Review</label>
-                          <textarea placeholder='How is this playground?' onChange={(e)=>setDesc(e.target.value)}/>
+                          <textarea placeholder='How is it?' onChange={(e)=>setDesc(e.target.value)}/>
                           <label>Rating</label>
                           <select onChange={(e)=>setRating(e.target.value)}>
                               <option value="1">1</option>
