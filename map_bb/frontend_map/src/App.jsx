@@ -55,10 +55,11 @@ import Login from './components/Login';
 
     const handleAddClick = (e) => {
       const {lng, lat} = e.lngLat;
-      setnewPlace({
+      { currentUser && setnewPlace({
         lat: lat,
         lng: lng,
-      });
+      }); }
+      
     };
 
     const handleSubmit = async (e) => {
@@ -89,14 +90,24 @@ import Login from './components/Login';
     }
 
     return (
+
         <div className="App">
-          {currentUser ? (
-                  <div className='navbar'>
-                  <button className='button logout' onClick={handleLogout}>Log out</button> </div>
-              ) : (<div className='navbar'>
-                  <button className='button login' onClick={()=>setShowLogin(true)}>Log in</button>
-                  <button className='button register' onClick={()=>setShowRegister(true)}>Register</button>
-                </div>)}
+          <header className='head'>
+              <li><img src="../../logo_bb.png" alt="logo" /></li>
+              <li> <a href="bb_menu.html">Home</a></li>
+              <li><a href="bb_news.html">News </a></li>
+              <li> <a href="bb_teams.html">Teams</a></li>
+              <li> Results</li>
+              <li> Map</li>
+            {currentUser ? (
+                    <div className='navbar'>
+                    <button className='button logout' onClick={handleLogout}>Log out</button> </div>
+                ) : (<div className='navbar'>
+                    <button className='button login' onClick={()=>setShowLogin(true)}>Log in</button>
+                    <button className='button register' onClick={()=>setShowRegister(true)}>Register</button>
+                  </div>)
+                  }
+          </header>
           <Map
             mapboxAccessToken={import.meta.env.VITE_MAPBOX}
             {...viewport}
