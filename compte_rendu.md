@@ -170,29 +170,6 @@ Nous avons choisi de ne pas utiliser de framework CSS (comme Bootstrap ou Tailwi
 
 #### Structure du projet
 
-```{
-    "dependencies": {
-        "bcryptjs": "^3.0.3",
-        "cors": "^2.8.6",
-        "dotenv": "^17.2.3",
-        "express": "^5.2.1",
-        "mongodb": "^7.0.0",
-        "mongoose": "^9.1.5",
-        "nodemon": "3.1.11"
-    },
-    "name": "backend_map",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "nodemon index.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "type": "commonjs"
-}
-
 Buzzer_Beater/
 ├── pgs_prjts/            ← Pages HTML du site
 │   ├── bb_menu.html      ← Page d'accueil
@@ -438,7 +415,7 @@ node index.js
 cd map_bb/frontend_map
 npm install
 # Créer .env avec : VITE_MAPBOX=pk.eyJ1...
-npm run dev
+npm run dev 
 # → VITE ready at http://localhost:5173/
 ```
 
