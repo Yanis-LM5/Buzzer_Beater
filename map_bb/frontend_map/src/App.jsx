@@ -17,7 +17,6 @@ import Login from './components/Login';
     const [currentUser, setCurrentUser] = useState(myStorage.getItem("user"));
     const [pins, setPins]= useState([]);
     const [currentPlaceId,setCurrentPlaceId] = useState(null);
-   
 
     // Create new place
     const [newPlace,setnewPlace] = useState(null);
@@ -84,6 +83,7 @@ import Login from './components/Login';
         username:currentUser,
         title: Title,
         desc: Desc,
+        address: address,
         rating: Rating,
         lat:newPlace.lat,
         long:newPlace.lng,
@@ -93,6 +93,10 @@ import Login from './components/Login';
         const res = await axios.post("/api/pins", newPin)
         setPins([...pins,res.data])
         setnewPlace(null)
+        // setTitle("");
+        // setAddress("");
+        // setDesc("");
+        // setRating(0);
       }catch(err){
         console.log("Error with adding a new Pin: "+ err)
       }
