@@ -76,7 +76,7 @@ header {
     color: inherit;
 }
 
-/* Effet au survol (Hover) */
+/* Effet au survol */
 .navbar ul li a:hover {
     background-image: url('imgs_prjt/balgris.png');
     background-size: cover;
@@ -865,11 +865,6 @@ h2 {
     transform: translateY(-3px);
 }
 
-
-@keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(8px); }
-}
 
 /*FEATURES BAR */
 .features {
