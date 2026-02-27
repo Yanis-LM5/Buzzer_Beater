@@ -27,7 +27,7 @@
                 <i class="fa-solid fa-user-circle"></i> ${escHtml(user)}
             </span>
             <button class="nav-logout-btn" id="nav-logout-btn">
-                <i class="fa-solid fa-right-from-bracket"></i> Déco
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
             </button>
         `;
 
