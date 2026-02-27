@@ -1,7 +1,4 @@
-/**
- * navbar-auth.js — Auth partagée pour toutes les pages statiques
- * Détecte automatiquement si l'utilisateur est connecté et met à jour la navbar.
- */
+//Auth Partagé 
 (function () {
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -30,7 +27,7 @@
                 <i class="fa-solid fa-user-circle"></i> ${escHtml(user)}
             </span>
             <button class="nav-logout-btn" id="nav-logout-btn">
-                <i class="fa-solid fa-right-from-bracket"></i> Déco
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
             </button>
         `;
 

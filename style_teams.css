@@ -76,7 +76,7 @@ header {
     color: inherit;
 }
 
-/* Effet au survol (Hover) */
+/* Effet au survol */
 .navbar ul li a:hover {
     background-image: url('imgs_prjt/balgris.png');
     background-size: cover;
@@ -107,7 +107,7 @@ header {
 .nav-current,
 .nav-current a,
 .nav-active a {
-    color: #c084fc !important;
+    color: indigo !important;
     font-weight: 700 !important;
     text-shadow: 0 0 10px rgba(192, 132, 252, 0.35);
 }
@@ -127,8 +127,8 @@ header {
 }
 
 .nav-logout-btn {
-    background: rgba(229,57,53,0.20);
-    color: rgba(229,57,53,0.90);
+    background: slateblue;
+    color: white;
     border: 1px solid rgba(229,57,53,0.35);
     border-radius: 6px;
     padding: 3px 10px;
@@ -865,11 +865,6 @@ h2 {
     transform: translateY(-3px);
 }
 
-
-@keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(8px); }
-}
 
 /*FEATURES BAR */
 .features {

@@ -170,6 +170,7 @@ Nous avons choisi de ne pas utiliser de framework CSS (comme Bootstrap ou Tailwi
 
 #### Structure du projet
 
+```
 Buzzer_Beater/
 ├── pgs_prjts/            ← Pages HTML du site
 │   ├── bb_menu.html      ← Page d'accueil
