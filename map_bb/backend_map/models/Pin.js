@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const PinSchema = new mongoose.Schema({
     username: {
         type: String,
+        unique: true,
         required: true,
     },
     title: {
@@ -16,6 +17,7 @@ const PinSchema = new mongoose.Schema({
 
     address: {
         type: String,
+        unique: true,
         required: true,
     },
     rating: {
