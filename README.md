@@ -1,6 +1,6 @@
 # 🏀 Buzzer Beater
  
-**Buzzer Beater** is a French-language web platform dedicated to the NBA (National Basketball Association). It brings together news, team profiles, an interactive map of basketball courts, and a community forum in a single place — built as a school project (APP3 — Web Programming module, 2025-2026).
+**Buzzer Beater** is a French-language web platform dedicated to the NBA (National Basketball Association). It brings together news, team profiles, an interactive map of basketball courts, and a community forum in a single place.
  
 > The name *"Buzzer Beater"* refers to a shot scored at the very last second — a nod to the passion the project aims to share.
  
